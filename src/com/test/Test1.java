@@ -27,10 +27,6 @@ public class Test1 {
 		User user =session.selectOne(statement,1);
 		System.out.println(user.getPwd());
 	}
-	@Test
-	public void test1(){
-		
-	}
 	
 	
 }
