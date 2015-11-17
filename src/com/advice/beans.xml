@@ -7,13 +7,20 @@
 	
 	<bean id="greetingBeforeAdvice" class="com.advice.GreetingBeforeAdvice"/>
 	<bean id="target" class="com.advice.NaiveWaiter"/>
+	<bean id="greetingAferAdvice" class="com.advice.GreetingAfterAdvice"/>
+	<bean id="greetingInterceptor" class="com.advice.GreetingInterceptor"/>
 	<!-- <bean id="waiter" class="org.springframework.aop.framework.ProxyFactoryBean" 
 		p:proxyInterfaces="com.advice.Waiter"
 		p:interceptorNames="greetingBeforeAdvice"
 		p:target-ref="target"  /> jdk代理技术-->
-	<bean id="waiter" class="org.springframework.aop.framework.ProxyFactoryBean" 
-		p:interceptorNames="greetingBeforeAdvice"
+	<!-- <bean id="waiter" class="org.springframework.aop.framework.ProxyFactoryBean" 
+		p:interceptorNames="greetingBeforeAdvice,greetingAferAdvice,greetingInterceptor"
 		p:target-ref="target"
-		p:proxyTargetClass="true"  />	<!-- cglib代理方式 -->
+		p:proxyTargetClass="true"  /> -->	<!-- cglib代理方式 -->
+		
+	<bean id="waiter" class="org.springframework.aop.framework.ProxyFactoryBean" 
+	p:interceptorNames="greetingInterceptor"
+	p:target-ref="target"
+	p:proxyInterfaces="com.advice.Waiter"/>
 	
 </beans>
